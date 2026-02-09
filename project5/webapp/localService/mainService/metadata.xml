@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="SAP__common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="SAP__measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CORE',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Core.V1" Alias="SAP__core"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="SAP__capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="SAP__aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="SAP__validation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="SAP__UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_HTML5',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.HTML5.v1" Alias="SAP__HTML5"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PDF',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.PDF.v1" Alias="SAP__PDF"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_SESSION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Session.v1" Alias="SAP__session"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="com.sap.gateway.srvd.z_sd_job_ovp.v0001" Alias="SAP__self">
+            <Annotation Term="SAP__core.SchemaVersion" String="1.0.0"/>
+            <EntityType Name="JobListType">
+                <Key>
+                    <PropertyRef Name="JobName"/>
+                    <PropertyRef Name="JobCount"/>
+                </Key>
+                <Property Name="JobName" Type="Edm.String" Nullable="false" MaxLength="32"/>
+                <Property Name="JobCount" Type="Edm.String" Nullable="false" MaxLength="8"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12"/>
+                <Property Name="StartDate" Type="Edm.Date"/>
+                <Property Name="StartTime" Type="Edm.TimeOfDay" Nullable="false"/>
+                <Property Name="DurationInSeconds" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="2"/>
+                <Property Name="DurationUnit" Type="Edm.String" Nullable="false" MaxLength="3"/>
+                <Property Name="StatusText" Type="Edm.String" Nullable="false" MaxLength="9"/>
+                <Property Name="Criticality" Type="Edm.Byte" Nullable="false"/>
+                <Property Name="SAP__Messages" Type="Collection(com.sap.gateway.srvd.z_sd_job_ovp.v0001.SAP__Message)" Nullable="false"/>
+                <NavigationProperty Name="_Steps" Type="Collection(com.sap.gateway.srvd.z_sd_job_ovp.v0001.JobStepType)"/>
+                <NavigationProperty Name="_Logs" Type="Collection(com.sap.gateway.srvd.z_sd_job_ovp.v0001.JobLogType)"/>
+            </EntityType>
+            <EntityType Name="JobStepType">
+                <Key>
+                    <PropertyRef Name="JobName"/>
+                    <PropertyRef Name="JobCount"/>
+                    <PropertyRef Name="StepCount"/>
+                </Key>
+                <Property Name="JobName" Type="Edm.String" Nullable="false" MaxLength="32"/>
+                <Property Name="JobCount" Type="Edm.String" Nullable="false" MaxLength="8"/>
+                <Property Name="StepCount" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="ProgramName" Type="Edm.String" MaxLength="40"/>
+                <Property Name="VariantName" Type="Edm.String" MaxLength="14"/>
+                <Property Name="StepUser" Type="Edm.String" MaxLength="12"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="1"/>
+            </EntityType>
+            <EntityType Name="JobLogType">
+                <Key>
+                    <PropertyRef Name="JobName"/>
+                    <PropertyRef Name="JobCount"/>
+                    <PropertyRef Name="LogLineNo"/>
+                </Key>
+                <Property Name="JobName" Type="Edm.String" Nullable="false" MaxLength="32"/>
+                <Property Name="JobCount" Type="Edm.String" Nullable="false" MaxLength="8"/>
+                <Property Name="LogLineNo" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="LogDate" Type="Edm.Date"/>
+                <Property Name="LogTime" Type="Edm.TimeOfDay"/>
+                <Property Name="MessageText" Type="Edm.String"/>
+                <Property Name="MsgId" Type="Edm.String" MaxLength="20"/>
+                <Property Name="MsgNo" Type="Edm.String" MaxLength="3"/>
+                <Property Name="MsgType" Type="Edm.String" MaxLength="1"/>
+                <Property Name="CriticalityColor" Type="Edm.Byte"/>
+            </EntityType>
+            <EntityType Name="Z_I_VariantVHType">
+                <Key>
+                    <PropertyRef Name="ProgramName"/>
+                    <PropertyRef Name="VariantName"/>
+                </Key>
+                <Property Name="ProgramName" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="VariantName" Type="Edm.String" Nullable="false" MaxLength="14"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12"/>
+            </EntityType>
+            <EntityType Name="Z_I_ProgramVHType">
+                <Key>
+                    <PropertyRef Name="ProgramName"/>
+                </Key>
+                <Property Name="ProgramName" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="70"/>
+            </EntityType>
+            <EntityType Name="JobStatisticsType">
+                <Key>
+                    <PropertyRef Name="status"/>
+                </Key>
+                <Property Name="status" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <Property Name="StatusText" Type="Edm.String" Nullable="false" MaxLength="15"/>
+                <Property Name="NumberOfJobs" Type="Edm.Int32" Nullable="false"/>
+            </EntityType>
+            <ComplexType Name="SAP__Message">
+                <Property Name="code" Type="Edm.String" Nullable="false"/>
+                <Property Name="message" Type="Edm.String" Nullable="false"/>
+                <Property Name="target" Type="Edm.String"/>
+                <Property Name="additionalTargets" Type="Collection(Edm.String)" Nullable="false"/>
+                <Property Name="transition" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="numericSeverity" Type="Edm.Byte" Nullable="false"/>
+                <Property Name="longtextUrl" Type="Edm.String"/>
+            </ComplexType>
+            <Action Name="ScheduleJob" EntitySetPath="_it" IsBound="true">
+                <Parameter Name="_it" Type="Collection(com.sap.gateway.srvd.z_sd_job_ovp.v0001.JobListType)" Nullable="false"/>
+                <Parameter Name="JobName" Type="Edm.String" Nullable="false" MaxLength="32"/>
+                <Parameter Name="ProgramName" Type="Edm.String" Nullable="false" MaxLength="40"/>
+                <Parameter Name="VariantName" Type="Edm.String" Nullable="false" MaxLength="30"/>
+                <Parameter Name="StartDate" Type="Edm.Date" Nullable="true"/>
+                <Parameter Name="StartTime" Type="Edm.TimeOfDay" Nullable="false"/>
+                <Parameter Name="IsImmediate" Type="Edm.String" Nullable="false" MaxLength="1"/>
+                <ReturnType Type="com.sap.gateway.srvd.z_sd_job_ovp.v0001.JobListType" Nullable="false"/>
+            </Action>
+            <EntityContainer Name="Container">
+                <EntitySet Name="JobList" EntityType="com.sap.gateway.srvd.z_sd_job_ovp.v0001.JobListType"/>
+                <EntitySet Name="JobStatistics" EntityType="com.sap.gateway.srvd.z_sd_job_ovp.v0001.JobStatisticsType"/>
+                <EntitySet Name="Z_I_ProgramVH" EntityType="com.sap.gateway.srvd.z_sd_job_ovp.v0001.Z_I_ProgramVHType"/>
+                <EntitySet Name="Z_I_VariantVH" EntityType="com.sap.gateway.srvd.z_sd_job_ovp.v0001.Z_I_VariantVHType"/>
+                <EntitySet Name="JobSteps" EntityType="com.sap.gateway.srvd.z_sd_job_ovp.v0001.JobStepType"/>
+                <EntitySet Name="JobLogs" EntityType="com.sap.gateway.srvd.z_sd_job_ovp.v0001.JobLogType"/>
+            </EntityContainer>
+            <Annotations Target="SAP__self.JobListType/JobName">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Job Name"/>
+                <Annotation Term="SAP__common.Heading" String="Background Job Name"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Background Job Name"/>
+            </Annotations>
+            <Annotations Target="SAP__self.JobListType/CreatedBy">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Job scheduler"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Initiator of job/step scheduling"/>
+            </Annotations>
+            <Annotations Target="SAP__self.JobListType/DurationInSeconds">
+                <Annotation Term="SAP__measures.Unit" Path="DurationUnit"/>
+            </Annotations>
+            <Annotations Target="SAP__self.JobListType/DurationUnit">
+                <Annotation Term="SAP__common.IsUnit"/>
+            </Annotations>
+            <Annotations Target="SAP__self.JobListType/StatusText">
+                <Annotation Term="SAP__common.ValueListReferences">
+                    <Collection>
+                        <String>../../../../srvd_f4/sap/z_i_statustextvh/0001;ps='srvd-z_sd_job_ovp-0001';va='com.sap.gateway.srvd.z_sd_job_ovp.v0001.et-z_c_job_ovp_list.statustext'/$metadata</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__common.ValueListWithFixedValues"/>
+            </Annotations>
+            <Annotations Target="SAP__self.JobListType">
+                <Annotation Term="SAP__common.Label" String="Recent Jobs"/>
+                <Annotation Term="SAP__UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Background Jobs"/>
+                        <PropertyValue Property="TypeNamePlural" String="Background Jobs"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.LineItem">
+                    <Collection>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Label" String="Job Name"/>
+                            <PropertyValue Property="Value" Path="JobName"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Label" String="Status"/>
+                            <PropertyValue Property="Criticality" Path="Criticality"/>
+                            <PropertyValue Property="Value" Path="StatusText"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Label" String="Schedule By"/>
+                            <PropertyValue Property="Value" Path="CreatedBy"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Label" String="Start Time"/>
+                            <PropertyValue Property="Value" Path="StartTime"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Label" String="Start Date"/>
+                            <PropertyValue Property="Value" Path="StartDate"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Label" String="Duration"/>
+                            <PropertyValue Property="Value" Path="DurationInSeconds"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.PresentationVariant">
+                    <Record>
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="SAP__common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="StartDate"/>
+                                    <PropertyValue Property="Descending" Bool="true"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Visualizations">
+                            <Collection>
+                                <AnnotationPath>@SAP__UI.LineItem</AnnotationPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>JobName</PropertyPath>
+                        <PropertyPath>StatusText</PropertyPath>
+                        <PropertyPath>CreatedBy</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__common.Messages" Path="SAP__Messages"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/JobList">
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="true"/>
+                        <PropertyValue Property="UnsupportedExpressions" EnumMember="SAP__capabilities.SearchExpressions/AND SAP__capabilities.SearchExpressions/OR SAP__capabilities.SearchExpressions/NOT SAP__capabilities.SearchExpressions/group SAP__capabilities.SearchExpressions/phrase"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="JobName"/>
+                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="CreatedBy"/>
+                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="DurationInSeconds"/>
+                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.Container">
+                <Annotation Term="SAP__CodeList.UnitsOfMeasure">
+                    <Record>
+                        <PropertyValue Property="Url" String="../../../../default/iwbep/common/0001/$metadata"/>
+                        <PropertyValue Property="CollectionPath" String="UnitsOfMeasure"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="SAP__aggregation.RollupType/None"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+                <Annotation Term="SAP__capabilities.FilterFunctions">
+                    <Collection>
+                        <String>eq</String>
+                        <String>ne</String>
+                        <String>gt</String>
+                        <String>ge</String>
+                        <String>lt</String>
+                        <String>le</String>
+                        <String>and</String>
+                        <String>or</String>
+                        <String>contains</String>
+                        <String>startswith</String>
+                        <String>endswith</String>
+                        <String>any</String>
+                        <String>all</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.SupportedFormats">
+                    <Collection>
+                        <String>application/json</String>
+                        <String>application/pdf</String>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__PDF.Features">
+                    <Record>
+                        <PropertyValue Property="DocumentDescriptionReference" String="../../../../default/iwbep/common/0001/$metadata"/>
+                        <PropertyValue Property="DocumentDescriptionCollection" String="MyDocumentDescriptions"/>
+                        <PropertyValue Property="ArchiveFormat" Bool="true"/>
+                        <PropertyValue Property="Border" Bool="true"/>
+                        <PropertyValue Property="CoverPage" Bool="true"/>
+                        <PropertyValue Property="FitToPage" Bool="true"/>
+                        <PropertyValue Property="FontName" Bool="true"/>
+                        <PropertyValue Property="FontSize" Bool="true"/>
+                        <PropertyValue Property="Margin" Bool="true"/>
+                        <PropertyValue Property="Signature" Bool="true"/>
+                        <PropertyValue Property="ResultSizeDefault" Int="20000"/>
+                        <PropertyValue Property="ResultSizeMaximum" Int="20000"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.Z_I_VariantVHType/ProgramName">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Report Name"/>
+                <Annotation Term="SAP__common.Heading" String="Program Name in Variant Key"/>
+                <Annotation Term="SAP__common.QuickInfo" String="ABAP: Program Name in Variant Key"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Z_I_VariantVHType/VariantName">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Variant"/>
+                <Annotation Term="SAP__common.Heading" String="Variant Name"/>
+                <Annotation Term="SAP__common.QuickInfo" String="ABAP: Name of variant (without program name)"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Z_I_VariantVHType/CreatedBy">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="User Name"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Z_I_VariantVHType">
+                <Annotation Term="SAP__common.Label" String="Value Help for Variant"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/Z_I_VariantVH">
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="ProgramName"/>
+                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="VariantName"/>
+                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="CreatedBy"/>
+                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.Z_I_ProgramVHType/ProgramName">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Program Name"/>
+                <Annotation Term="SAP__common.Heading" String="Program"/>
+                <Annotation Term="SAP__common.QuickInfo" String="ABAP Program Name"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Z_I_ProgramVHType">
+                <Annotation Term="SAP__common.Label" String="Value Help for Program"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/Z_I_ProgramVH">
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="ProgramName"/>
+                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.JobStatisticsType/status">
+                <Annotation Term="SAP__common.IsUpperCase"/>
+                <Annotation Term="SAP__common.Label" String="Job status"/>
+                <Annotation Term="SAP__common.QuickInfo" String="State of Background Job"/>
+            </Annotations>
+            <Annotations Target="SAP__self.JobStatisticsType/StatusText">
+                <Annotation Term="SAP__common.Label" String="Status"/>
+            </Annotations>
+            <Annotations Target="SAP__self.JobStatisticsType">
+                <Annotation Term="SAP__common.Label" String="Job Statistics for OVP"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Container/JobStatistics">
+                <Annotation Term="SAP__capabilities.SearchRestrictions">
+                    <Record>
+                        <PropertyValue Property="Searchable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.InsertRestrictions">
+                    <Record>
+                        <PropertyValue Property="Insertable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.DeleteRestrictions">
+                    <Record>
+                        <PropertyValue Property="Deletable" Bool="false"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.UpdateRestrictions">
+                    <Record>
+                        <PropertyValue Property="Updatable" Bool="false"/>
+                        <PropertyValue Property="QueryOptions">
+                            <Record>
+                                <PropertyValue Property="SelectSupported" Bool="true"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__core.OptimisticConcurrency">
+                    <Collection/>
+                </Annotation>
+                <Annotation Term="SAP__capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="status"/>
+                                    <PropertyValue Property="AllowedExpressions" String="MultiValue"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.JobListType/JobCount">
+                <Annotation Term="SAP__common.Label" String="Job No."/>
+                <Annotation Term="SAP__common.Heading" String="Batch Job ID Number"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Job ID"/>
+            </Annotations>
+            <Annotations Target="SAP__self.JobListType/StartDate">
+                <Annotation Term="SAP__common.Label" String="Execution Date"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Job start date"/>
+            </Annotations>
+            <Annotations Target="SAP__self.JobListType/StartTime">
+                <Annotation Term="SAP__common.Label" String="Execution Date"/>
+                <Annotation Term="SAP__common.QuickInfo" String="Batch Job Start Time"/>
+            </Annotations>
+            <Annotations Target="SAP__self.Z_I_ProgramVHType/Description">
+                <Annotation Term="SAP__common.Label" String="Report title"/>
+            </Annotations>
+            <Annotations Target="SAP__self.JobStatisticsType/NumberOfJobs">
+                <Annotation Term="SAP__aggregation.CustomAggregate" Qualifier="NumberOfJobs" String="Edm.Int32"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
