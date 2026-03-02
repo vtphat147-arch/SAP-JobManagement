@@ -67,6 +67,11 @@
                 <Annotation Term="UI.LineItem" Qualifier="tableMacro2">
                     <Collection>
                         <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Stop Job"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.z_sd_job_ovp.v0001.StopJob"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGrouping/ChangeSet"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
                             <PropertyValue Property="Label" String="Xóa Job"/>
                             <PropertyValue Property="Action" String="com.sap.gateway.srvd.z_sd_job_ovp.v0001.DeleteJob"/>
                             <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGrouping/ChangeSet"/>

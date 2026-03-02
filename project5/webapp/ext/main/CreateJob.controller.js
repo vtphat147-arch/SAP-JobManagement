@@ -24,7 +24,6 @@ sap.ui.define([
             this.getView().setModel(oModel, "local");
         },
 
-
         onCheckStep1: function () {
             var oModel = this.getView().getModel("local");
             var sJob = oModel.getProperty("/jobName");
@@ -119,13 +118,9 @@ sap.ui.define([
             var oSelectedItem = oEvent.getParameter("selectedItem");
             if (oSelectedItem) {
                 var sProgram = oSelectedItem.getCells()[0].getText();
-
                 var oModel = this.getView().getModel("local");
-
                 oModel.setProperty("/programName", sProgram);
-
                 oModel.setProperty("/variantName", "");
-
                 this.onCheckStep1();
             }
         },
