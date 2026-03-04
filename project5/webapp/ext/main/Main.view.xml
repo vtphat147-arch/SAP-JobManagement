@@ -13,7 +13,7 @@
             </f:DynamicPageHeader>
         </f:header>
         <f:content>
-            <macros:Table id="Table" metaPath="/JobList/@com.sap.vocabularies.UI.v1.LineItem#tableMacro2" filterBar="FilterBar" header="Background Jobs" isSearchable="false" type="ResponsiveTable" enableFullScreen="true" enableExport="true" selectionMode="Multi" variantManagement="Page">
+            <macros:Table id="Table" rowPress=".onRowPress" metaPath="/JobList/@com.sap.vocabularies.UI.v1.LineItem#tableMacro2" filterBar="FilterBar" header="Background Jobs" isSearchable="false" type="ResponsiveTable" enableFullScreen="true" enableExport="true" selectionMode="Multi" variantManagement="Page">
                 <macros:actions>
                     <Button text="Own Jobs" icon="sap-icon://world" type="Emphasized" press="onFilterOwnJobs"/>
                     <Button text="Job Log" icon="sap-icon://list" press="onShowJobLog"/>

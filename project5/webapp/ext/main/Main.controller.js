@@ -65,6 +65,30 @@ sap.ui.define(
 
                 }
             },
+            // --- THÊM HÀM NÀY ĐỂ ĐIỀU HƯỚNG SANG TRANG DETAIL (GIỐNG SM37) ---
+            onRowPress: function (oEvent) {
+                var oContext = oEvent.getParameters().bindingContext || oEvent.getSource().getBindingContext();
+                if (!oContext) {
+                    return;
+                }
+
+                var oExtensionAPI = this.getExtensionAPI();
+                if (oExtensionAPI && oExtensionAPI.routing) {
+                    
+                    // 1. Lấy đường dẫn Context (Path)
+                    // Ví dụ sPath: "/JobList(JobName='BJSM_TEST',JobCount='000001')"
+                    var sPath = oContext.getPath();
+                    
+                    // 2. Tách lấy phần Key nằm trong ngoặc đơn
+                    var sKey = sPath.substring(sPath.indexOf("(") + 1, sPath.indexOf(")"));
+
+                    // 3. Điều hướng sang Object Page đã khai báo trong manifest.json
+                    // Tên route "JobListObjectPage" và biến "JobListKey" phải khớp với manifest
+                    oExtensionAPI.routing.navigateToRoute("JobListObjectPage", {
+                        "JobListKey": sKey
+                    });
+                }
+            },
 
             onShowJobLog: function () {
                 var oTable = this.byId("Table");
