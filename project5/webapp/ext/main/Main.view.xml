@@ -15,9 +15,9 @@
         <f:content>
             <macros:Table id="Table" metaPath="/JobList/@com.sap.vocabularies.UI.v1.LineItem#tableMacro2" filterBar="FilterBar" header="Background Jobs" isSearchable="false" type="ResponsiveTable" enableFullScreen="true" enableExport="true" selectionMode="Multi" variantManagement="Page">
                 <macros:actions>
-                    <Button text="Own Jobs" icon="sap-icon://world" type="Emphasized" press="onFilterOwnJobs"/>
-                    <Button text="Job Log" icon="sap-icon://list" press="onShowJobLog"/>
-                    <Button text="Create New Job" icon="sap-icon://add" type="Success" press="onCreateJob"/>
+                    <Button text="🫵 Own Jobs" icon="sap-icon://world" type="Emphasized" press="onFilterOwnJobs"/>
+                    <Button text="🛠️ Job Log" icon="sap-icon://list" press="onShowJobLog"/>
+                    <Button text="➕ Create New Job" icon="sap-icon://add" type="Success" press="onCreateJob"/>
                 </macros:actions>
             </macros:Table>
         </f:content>
