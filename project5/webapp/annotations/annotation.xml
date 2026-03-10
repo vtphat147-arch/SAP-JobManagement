@@ -76,11 +76,7 @@
                             <PropertyValue Property="Action" String="com.sap.gateway.srvd.z_sd_job_ovp.v0001.DeleteJob"/>
                             <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGrouping/ChangeSet"/>
                         </Record>
-                        <Record Type="UI.ReferenceFacet">
-                            <PropertyValue Property="Label" String="🛠️ Job Log"/>
-                            <PropertyValue Property="ID" String="JobLog"/>
-                            <PropertyValue Property="Target" AnnotationPath="_Logs/@UI.LineItem"/>
-                        </Record>
+
                         <Record Type="UI.DataField">
                             <PropertyValue Property="Value" Path="JobName"/>
                             <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
