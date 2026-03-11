@@ -2,16 +2,111 @@ sap.ui.define(
     [
         'sap/fe/core/PageController',
         "sap/m/MessageToast",
+        "sap/m/MessageBox",
         "sap/ui/core/UIComponent",
         "sap/ui/model/Filter",
         "sap/ui/model/FilterOperator",
         "sap/ui/core/Fragment",
         "sap/ui/model/json/JSONModel"
     ],
-    function (PageController, MessageToast, UIComponent, Filter, FilterOperator, Fragment, JSONModel) {
+    function (PageController, MessageToast, MessageBox, UIComponent, Filter, FilterOperator, Fragment, JSONModel) {
         'use strict';
 
         return PageController.extend('project5.ext.main.Main', {
+
+            // ==================== STOP JOB (với Confirmation) ====================
+            onStopJob: function () {
+                var oTable = this.byId("Table");
+                var aSelectedContexts = oTable.getSelectedContexts();
+
+                if (aSelectedContexts.length === 0) {
+                    MessageToast.show("Vui lòng chọn ít nhất 1 Job để dừng.");
+                    return;
+                }
+
+                var iCount = aSelectedContexts.length;
+                var sMessage = "Bạn có chắc chắn muốn DỪNG " + iCount + " job đã chọn?";
+
+                var that = this;
+                MessageBox.confirm(sMessage, {
+                    title: "🚫 Xác nhận Stop Job",
+                    emphasizedAction: MessageBox.Action.OK,
+                    onClose: function (sAction) {
+                        if (sAction === MessageBox.Action.OK) {
+                            that._executeAction(aSelectedContexts, "com.sap.gateway.srvd.z_sd_job_ovp.v0001.StopJob", "Stop");
+                        }
+                    }
+                });
+            },
+
+            // ==================== DELETE JOB (với Confirmation) ====================
+            onDeleteJob: function () {
+                var oTable = this.byId("Table");
+                var aSelectedContexts = oTable.getSelectedContexts();
+
+                if (aSelectedContexts.length === 0) {
+                    MessageToast.show("Vui lòng chọn ít nhất 1 Job để xóa.");
+                    return;
+                }
+
+                var iCount = aSelectedContexts.length;
+                var aJobNames = aSelectedContexts.map(function(ctx) { return ctx.getProperty("JobName"); });
+                var sMessage = "Bạn có chắc chắn muốn XÓA " + iCount + " job?\n\n" + aJobNames.join(", ");
+
+                var that = this;
+                MessageBox.confirm(sMessage, {
+                    title: "🗑️ Xác nhận Delete Job",
+                    emphasizedAction: MessageBox.Action.OK,
+                    onClose: function (sAction) {
+                        if (sAction === MessageBox.Action.OK) {
+                            that._executeAction(aSelectedContexts, "com.sap.gateway.srvd.z_sd_job_ovp.v0001.DeleteJob", "Delete");
+                        }
+                    }
+                });
+            },
+
+            // ==================== HELPER: Gọi Bound Action cho nhiều dòng ====================
+            _executeAction: function (aContexts, sActionName, sLabel) {
+                var that = this;
+                var aPromises = aContexts.map(function (oContext) {
+                    var oActionContext = oContext.getModel().bindContext(
+                        sActionName + "(...)", oContext
+                    );
+                    return oActionContext.execute().then(function () {
+                        return { success: true, name: oContext.getProperty("JobName") };
+                    }).catch(function (oError) {
+                        return { success: false, name: oContext.getProperty("JobName"), error: oError.message };
+                    });
+                });
+
+                Promise.all(aPromises).then(function (aResults) {
+                    var aSuccess = aResults.filter(function (r) { return r.success; });
+                    var aFailed = aResults.filter(function (r) { return !r.success; });
+
+                    if (aSuccess.length > 0) {
+                        MessageToast.show(sLabel + " thành công: " + aSuccess.length + " job(s).");
+                    }
+                    if (aFailed.length > 0) {
+                        var sErrors = aFailed.map(function (r) { return r.name + ": " + r.error; }).join("\n");
+                        MessageBox.error(sLabel + " thất bại:\n" + sErrors);
+                    }
+
+                    // Refresh bảng sau khi thực hiện
+                    var oTable = that.byId("Table");
+                    if (oTable) {
+                        var oContent = oTable.getContent();
+                        if (oContent) {
+                            var oBinding = oContent.getBinding("rows") || oContent.getBinding("items");
+                            if (!oBinding && typeof oContent.getRowBinding === "function") {
+                                oBinding = oContent.getRowBinding();
+                            }
+                            if (oBinding) {
+                                oBinding.refresh();
+                            }
+                        }
+                    }
+                });
+            },
 
             onCreateJob: function (oEvent) {
 
