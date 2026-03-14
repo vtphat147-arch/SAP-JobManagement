@@ -145,6 +145,14 @@
                 <Parameter Name="_it" Type="Collection(com.sap.gateway.srvd.z_sd_job_ovp.v0001.JobListType)" Nullable="false"/>
                 <ReturnType Type="com.sap.gateway.srvd.z_sd_job_ovp.v0001.JobListType" Nullable="false"/>
             </Action>
+            <Action Name="ReleaseJob" EntitySetPath="_it" IsBound="true">
+                <Parameter Name="_it" Type="Collection(com.sap.gateway.srvd.z_sd_job_ovp.v0001.JobListType)" Nullable="false"/>
+                <ReturnType Type="com.sap.gateway.srvd.z_sd_job_ovp.v0001.JobListType" Nullable="false"/>
+            </Action>
+            <Action Name="RepeatJob" EntitySetPath="_it" IsBound="true">
+                <Parameter Name="_it" Type="Collection(com.sap.gateway.srvd.z_sd_job_ovp.v0001.JobListType)" Nullable="false"/>
+                <ReturnType Type="com.sap.gateway.srvd.z_sd_job_ovp.v0001.JobListType" Nullable="false"/>
+            </Action>
             <EntityContainer Name="Container">
                 <EntitySet Name="JobList" EntityType="com.sap.gateway.srvd.z_sd_job_ovp.v0001.JobListType"/>
                 <EntitySet Name="JobStatistics" EntityType="com.sap.gateway.srvd.z_sd_job_ovp.v0001.JobStatisticsType"/>

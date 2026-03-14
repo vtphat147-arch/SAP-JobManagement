@@ -14,6 +14,74 @@ sap.ui.define(
 
         return PageController.extend('project5.ext.main.Main', {
 
+            // ==================== RELEASE JOB ====================
+            onReleaseJob: function () {
+                var oTable = this.byId("Table");
+                var aSelectedContexts = oTable.getSelectedContexts();
+
+                if (aSelectedContexts.length === 0) {
+                    MessageToast.show("Vui lòng chọn ít nhất 1 Job để Release.");
+                    return;
+                }
+
+                var iCount = aSelectedContexts.length;
+                var sMessage = "Bạn có chắc chắn muốn RELEASE " + iCount + " job đã chọn?";
+
+                var that = this;
+                MessageBox.confirm(sMessage, {
+                    title: " Xác nhận Release Job",
+                    emphasizedAction: MessageBox.Action.OK,
+                    onClose: function (sAction) {
+                        if (sAction === MessageBox.Action.OK) {
+                            that._executeAction(aSelectedContexts, "com.sap.gateway.srvd.z_sd_job_ovp.v0001.ReleaseJob", "Release");
+                        }
+                    }
+                });
+            },
+
+            // ==================== REPEAT JOB ====================
+            onRepeatJob: function () {
+                var oTable = this.byId("Table");
+                var aSelectedContexts = oTable.getSelectedContexts();
+
+                if (aSelectedContexts.length === 0) {
+                    MessageToast.show("Vui lòng chọn ít nhất 1 Job để Repeat.");
+                    return;
+                }
+
+                var iCount = aSelectedContexts.length;
+                var sMessage = "Bạn có chắc chắn muốn REPEAT " + iCount + " job đã chọn?";
+
+                var that = this;
+                MessageBox.confirm(sMessage, {
+                    title: " Xác nhận Repeat Job",
+                    emphasizedAction: MessageBox.Action.OK,
+                    onClose: function (sAction) {
+                        if (sAction === MessageBox.Action.OK) {
+                            that._executeAction(aSelectedContexts, "com.sap.gateway.srvd.z_sd_job_ovp.v0001.RepeatJob", "Repeat");
+                            that._refreshTable(); 
+                        }
+                    }
+                });
+            },
+
+            // ==================== HELPER: Refresh Table ====================
+            _refreshTable: function () {
+                var oTable = this.byId("Table");
+                if (oTable) {
+                    var oContent = oTable.getContent();
+                    if (oContent) {
+                        var oBinding = oContent.getBinding("rows") || oContent.getBinding("items");
+                        if (!oBinding && typeof oContent.getRowBinding === "function") {
+                            oBinding = oContent.getRowBinding();
+                        }
+                        if (oBinding) {
+                            oBinding.refresh();
+                        }
+                    }
+                }
+            },
+
             // ==================== STOP JOB (với Confirmation) ====================
             onStopJob: function () {
                 var oTable = this.byId("Table");
@@ -29,7 +97,7 @@ sap.ui.define(
 
                 var that = this;
                 MessageBox.confirm(sMessage, {
-                    title: "🚫 Xác nhận Stop Job",
+                    title: " Xác nhận Stop Job",
                     emphasizedAction: MessageBox.Action.OK,
                     onClose: function (sAction) {
                         if (sAction === MessageBox.Action.OK) {
@@ -55,7 +123,7 @@ sap.ui.define(
 
                 var that = this;
                 MessageBox.confirm(sMessage, {
-                    title: "🗑️ Xác nhận Delete Job",
+                    title: " Xác nhận Delete Job",
                     emphasizedAction: MessageBox.Action.OK,
                     onClose: function (sAction) {
                         if (sAction === MessageBox.Action.OK) {

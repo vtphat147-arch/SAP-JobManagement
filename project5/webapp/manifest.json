@@ -48,7 +48,10 @@
     },
     "contentDensities": { "compact": true, "cozy": true },
     "models": {
-      "i18n": { "type": "sap.ui.model.resource.ResourceModel", "settings": { "bundleName": "project5.i18n.i18n" } },
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": { "bundleName": "project5.i18n.i18n" }
+      },
       "": {
         "dataSource": "mainService",
         "preload": true,
@@ -59,9 +62,13 @@
           "earlyRequests": true
         }
       },
-      "@i18n": { "type": "sap.ui.model.resource.ResourceModel", "uri": "i18n/i18n.properties" }
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
     },
     "resources": { "css": [] },
+
     "routing": {
       "config": {
         "routerClass": "sap.m.routing.Router",
@@ -71,28 +78,37 @@
         "transition": "slide",
         "type": "standard"
       },
+
       "routes": [
         { "name": "JobListMain", "pattern": ":?query:", "target": "JobListMain" },
         { "name": "CreateJobRoute", "pattern": "create-job", "target": "CreateJobTarget" },
+
         { "name": "JobListObjectPage", "pattern": "JobList({JobListKey}):?query:", "target": "JobListObjectPage" },
+
         { "name": "JobLogObjectPage", "pattern": "JobList({JobListKey})/_Logs({LogKey}):?query:", "target": "JobLogObjectPage" },
-        { "name": "JobStepObjectPage", "pattern": "JobList({JobListKey})/_Steps({StepKey}):?query:", "target": "JobStepObjectPage" }
+
+        { "name": "JobStepObjectPage", "pattern": "JobList({JobListKey})/_Steps({StepKey}):?query:", "target": "JobStepObjectPage" },
+
+        { "name": "JobSpoolObjectPage", "pattern": "JobList({JobListKey})/_Spool({SpoolKey}):?query:", "target": "JobSpoolObjectPage" }
       ],
+
       "targets": {
+
         "JobListMain": {
           "type": "Component",
           "id": "JobListMain",
           "name": "sap.fe.core.fpm",
           "options": {
             "settings": {
-              "navigation": { 
-                  "JobList": { "detail": { "route": "JobListObjectPage" } } 
+              "navigation": {
+                "JobList": { "detail": { "route": "JobListObjectPage" } }
               },
               "contextPath": "/JobList",
               "viewName": "project5.ext.main.Main"
             }
           }
         },
+
         "CreateJobTarget": {
           "type": "View",
           "id": "CreateJobId",
@@ -100,6 +116,7 @@
           "viewName": "project5.ext.main.CreateJob",
           "viewId": "CreateJobId"
         },
+
         "JobListObjectPage": {
           "type": "Component",
           "id": "JobListObjectPage",
@@ -108,13 +125,15 @@
             "settings": {
               "navigation": {
                 "_Logs": { "detail": { "route": "JobLogObjectPage" } },
-                "_Steps": { "detail": { "route": "JobStepObjectPage" } }
+                "_Steps": { "detail": { "route": "JobStepObjectPage" } },
+                "_Spool": { "detail": { "route": "JobSpoolObjectPage" } }
               },
               "contextPath": "/JobList",
               "sectionLayout": "Page"
             }
           }
         },
+
         "JobLogObjectPage": {
           "type": "Component",
           "id": "JobLogObjectPage",
@@ -126,6 +145,7 @@
             }
           }
         },
+
         "JobStepObjectPage": {
           "type": "Component",
           "id": "JobStepObjectPage",
@@ -137,10 +157,24 @@
               "headerExpanded": true
             }
           }
+        },
+
+        "JobSpoolObjectPage": {
+          "type": "Component",
+          "id": "JobSpoolObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "contextPath": "/JobList/_Spool"
+            }
+          }
         }
+
       }
     }
   },
+
   "sap.fe": { "app": { "enableLazyLoading": true } },
+
   "sap.fiori": {}
 }
